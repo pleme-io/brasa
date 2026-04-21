@@ -1,0 +1,27 @@
+[package]
+name = "raizame"
+description = "brasa attestation chain — BLAKE3 from bootloader to every process"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+authors.workspace = true
+publish = false
+
+[features]
+default = []
+# `tameshi-compat` maps the brasa chain format 1:1 into `tameshi::AttestationLayer`.
+# Phase 1 integration.
+tameshi-compat = []
+testing = ["std"]
+std = []
+
+[lints]
+workspace = true
+
+[dependencies]
+raiz   = { workspace = true }
+blake3 = { workspace = true }
+zerocopy = { workspace = true }

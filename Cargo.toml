@@ -1,0 +1,76 @@
+[workspace]
+resolver = "3"
+members = [
+    "crates/tronco",
+    "crates/raiz",
+    "crates/seiva",
+    "crates/casca",
+    "crates/galho",
+    "crates/folha",
+    "crates/semente",
+    "crates/raizame",
+]
+
+[workspace.package]
+version = "0.0.1"
+edition = "2024"
+rust-version = "1.89.0"
+license = "MIT"
+homepage = "https://github.com/pleme-io/brasa"
+repository = "https://github.com/pleme-io/brasa"
+authors = ["pleme-io"]
+
+[workspace.lints.clippy]
+pedantic = { level = "warn", priority = -1 }
+missing_errors_doc = "allow"
+missing_panics_doc = "allow"
+module_name_repetitions = "allow"
+
+[workspace.dependencies]
+# Workspace crates (path deps for lockstep versioning)
+tronco   = { path = "crates/tronco" }
+raiz     = { path = "crates/raiz" }
+seiva    = { path = "crates/seiva" }
+casca    = { path = "crates/casca" }
+galho    = { path = "crates/galho" }
+folha    = { path = "crates/folha" }
+semente  = { path = "crates/semente" }
+raizame  = { path = "crates/raizame" }
+
+# Core no_std primitives
+bitflags     = { version = "2", default-features = false }
+zerocopy     = { version = "0.8", default-features = false, features = ["derive"] }
+heapless     = { version = "0.8", default-features = false }
+spin         = { version = "0.9", default-features = false, features = ["spin_mutex"] }
+log          = { version = "0.4", default-features = false }
+
+# Cryptographic primitives (no_std-capable)
+blake3       = { version = "1", default-features = false }
+
+# Arch primitives — aarch64 first, x86_64 follows
+aarch64-cpu  = "10"
+tock-registers = { version = "0.9", default-features = false }
+
+# Testing (host-side only, gated by `testing` feature on each crate)
+proptest     = { version = "1", default-features = false, features = ["std"] }
+
+[profile.release]
+codegen-units = 1
+lto           = true
+opt-level     = "z"
+strip         = true
+panic         = "abort"
+
+[profile.dev]
+panic = "abort"
+
+# Kernel-specific profile for image builds. Inherits release but forces abort
+# and optimizes for size without sacrificing debuggability.
+[profile.kernel]
+inherits      = "release"
+panic         = "abort"
+lto           = "fat"
+codegen-units = 1
+opt-level     = "z"
+debug         = true
+strip         = false

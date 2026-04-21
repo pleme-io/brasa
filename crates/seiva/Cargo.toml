@@ -1,0 +1,24 @@
+[package]
+name = "seiva"
+description = "brasa typed IPC — message types, endpoints, async wait"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+authors.workspace = true
+publish = false
+
+[features]
+default = []
+testing = ["std"]
+std = []
+
+[lints]
+workspace = true
+
+[dependencies]
+raiz     = { workspace = true }
+zerocopy = { workspace = true }
+heapless = { workspace = true }

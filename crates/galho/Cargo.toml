@@ -1,0 +1,26 @@
+[package]
+name = "galho"
+description = "brasa driver framework — PCI/USB enumeration, device cap types, driver lifecycle"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+authors.workspace = true
+publish = false
+
+[features]
+default = []
+testing = ["std"]
+std = []
+
+[lints]
+workspace = true
+
+[dependencies]
+raiz  = { workspace = true }
+seiva = { workspace = true }
+casca = { workspace = true }
+bitflags = { workspace = true }
+heapless = { workspace = true }

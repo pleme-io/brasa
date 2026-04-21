@@ -1,0 +1,30 @@
+[package]
+name = "folha"
+description = "brasa process abstraction + userspace runtime (replaces libc for Rust programs)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+authors.workspace = true
+publish = false
+
+[features]
+default = []
+# `rt` builds the userspace runtime — entry point, allocator, panic handler.
+# A program links with either `folha` (types only) or `folha` + `folha::rt`
+# (full runtime replacing libc).
+rt = []
+testing = ["std"]
+std = []
+
+[lints]
+workspace = true
+
+[dependencies]
+raiz  = { workspace = true }
+seiva = { workspace = true }
+casca = { workspace = true, features = ["userspace"] }
+galho = { workspace = true }
+heapless = { workspace = true }

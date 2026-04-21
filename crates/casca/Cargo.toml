@@ -1,0 +1,27 @@
+[package]
+name = "casca"
+description = "brasa syscall ABI — typed syscall surface shared between kernel and userspace"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+authors.workspace = true
+publish = false
+
+[features]
+default = []
+# Provides `casca::userspace` — the userspace issuer that traps into the kernel.
+userspace = []
+# Host-side testing with a mock kernel implementation of the Casca trait.
+testing = ["std"]
+std = []
+
+[lints]
+workspace = true
+
+[dependencies]
+raiz     = { workspace = true }
+seiva    = { workspace = true }
+zerocopy = { workspace = true }

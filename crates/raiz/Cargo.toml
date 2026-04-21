@@ -1,0 +1,29 @@
+[package]
+name = "raiz"
+description = "brasa capability system — typed caps, rights algebra, grant/revoke/derive"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+authors.workspace = true
+publish = false
+
+[features]
+default = []
+testing = ["std", "dep:proptest"]
+std = []
+
+[lints]
+workspace = true
+
+[dependencies]
+bitflags = { workspace = true }
+zerocopy = { workspace = true }
+heapless = { workspace = true }
+
+proptest = { workspace = true, optional = true }
+
+[dev-dependencies]
+proptest = { workspace = true }

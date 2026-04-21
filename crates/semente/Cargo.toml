@@ -1,0 +1,27 @@
+[package]
+name = "semente"
+description = "brasa bootloader — measures tronco into the attestation seed and hands off"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+authors.workspace = true
+publish = false
+
+[features]
+default = []
+testing = ["std"]
+std = []
+
+[lints]
+workspace = true
+
+[dependencies]
+raizame  = { workspace = true }
+blake3   = { workspace = true }
+zerocopy = { workspace = true }
+
+# The bootloader is a [[bin]] with a custom target; Phase 1 wires up
+# the UEFI target and the linker script. Phase 0 is lib-only.

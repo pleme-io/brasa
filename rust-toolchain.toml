@@ -1,0 +1,12 @@
+# Kernel development requires several unstable features (alloc_error_handler,
+# naked_functions, custom_test_frameworks). Channel pinned; bump intentionally.
+[toolchain]
+channel = "nightly-2026-04-01"
+components = ["rustfmt", "clippy", "rust-src", "llvm-tools-preview"]
+targets = [
+  "aarch64-unknown-none",
+  "aarch64-unknown-none-softfloat",
+  "aarch64-apple-darwin",
+  "x86_64-unknown-none",
+]
+profile = "minimal"
