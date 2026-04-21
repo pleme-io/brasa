@@ -22,13 +22,20 @@
       let
         pkgs = import nixpkgs { inherit system; };
 
-        # Nightly toolchain pinned via rust-toolchain.toml at the workspace root.
-        # fenix reads that file and provides the matching toolchain with rust-src,
-        # clippy, rustfmt, and the cross targets we need.
-        rustToolchain = (fenix.packages.${system}.fromToolchainFile {
-          file = ./rust-toolchain.toml;
-          sha256 = pkgs.lib.fakeSha256;  # replace on first `nix develop`
-        });
+        # Stable Rust toolchain composed from fenix, including the
+        # aarch64-unknown-none target rust-std. rust-toolchain.toml at the
+        # workspace root pins the channel; this block mirrors it in a form
+        # that doesn't require the sha256 dance (fromToolchainFile).
+        fx = fenix.packages.${system};
+        rustToolchain = fx.combine [
+          fx.stable.rustc
+          fx.stable.cargo
+          fx.stable.rustfmt
+          fx.stable.clippy
+          fx.stable.rust-src
+          fx.stable.llvm-tools-preview
+          fx.targets.aarch64-unknown-none.stable.rust-std
+        ];
 
         # Cross-toolchain for aarch64 bare-metal builds. On Darwin we use the
         # LLVM toolchain; on Linux we can use gcc-cross if needed.

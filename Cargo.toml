@@ -46,7 +46,10 @@ spin         = { version = "0.9", default-features = false, features = ["spin_mu
 log          = { version = "0.4", default-features = false }
 
 # Cryptographic primitives (no_std-capable)
-blake3       = { version = "1", default-features = false }
+# `pure` disables the C NEON path — aarch64-unknown-none lacks libc headers
+# (<assert.h> et al), so the C build would fail. Pure Rust is slower but
+# portable; acceptable for attestation-chain hashing (not a hot path).
+blake3       = { version = "1", default-features = false, features = ["pure"] }
 
 # Arch primitives — aarch64 first, x86_64 follows
 aarch64-cpu  = "10"

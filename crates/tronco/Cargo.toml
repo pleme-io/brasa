@@ -14,7 +14,8 @@ publish = false  # kernel core is not a crates.io library; versioned via the bra
 default = []
 # Enables host-side testability: builds the crate with std and mocks the arch layer.
 # Only use for unit tests in CI; kernel builds must have default features only.
-testing = ["std", "dep:proptest"]
+# (proptest is a dev-dep — always available under `cargo test`, not feature-gated.)
+testing = ["std"]
 std = []
 
 [lints]

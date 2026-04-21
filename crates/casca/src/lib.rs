@@ -10,7 +10,11 @@
 
 #![cfg_attr(not(feature = "std"), no_std)]
 
-use raiz::{Cap, CapType, Denied, Rights};
+// Re-exported so downstream users can import `Denied`/`Rights` from casca
+// without also needing raiz. Phase 1 expands as Cap/CapType appear on syscall
+// signatures in the `Casca` trait below.
+#[allow(unused_imports)]
+pub use raiz::{Cap, CapType, Denied, Rights};
 
 /// The full syscall surface. Phase 1 target: ~25 methods. Hard cap: 40.
 ///

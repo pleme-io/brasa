@@ -60,6 +60,10 @@ core::arch::global_asm!(
 .section .text.boot, "ax"
 .global _start
 _start:
+    // (Debug-only first-signal-of-life probe lived here during bring-up:
+    //   mov x9, #0x09000000 ; mov w10, #'B' ; strb w10, [x9]
+    // Reinstate it the next time we break kmain.)
+
     // Stack grows down from _stack_top defined in the linker script.
     adrp    x30, _stack_top
     add     x30, x30, :lo12:_stack_top

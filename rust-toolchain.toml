@@ -1,8 +1,10 @@
-# Kernel development requires several unstable features (alloc_error_handler,
-# naked_functions, custom_test_frameworks). Channel pinned; bump intentionally.
+# brasa targets stable Rust 1.89+. Everything we need for the kernel —
+# global_asm!, #![no_main], core::arch::asm!, #[panic_handler], the
+# #[unsafe(no_mangle)] attribute syntax — is stable on that channel.
+# Nightly is not required and is actively avoided for reproducibility.
 [toolchain]
-channel = "nightly-2026-04-01"
-components = ["rustfmt", "clippy", "rust-src", "llvm-tools-preview"]
+channel = "stable"
+components = ["rustfmt", "clippy", "rust-src"]
 targets = [
   "aarch64-unknown-none",
   "aarch64-unknown-none-softfloat",

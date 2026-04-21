@@ -7,7 +7,6 @@
 [target.aarch64-unknown-none]
 rustflags = [
     "-C", "link-arg=-Tcrates/brasa-bin/link.ld",
-    "-C", "link-arg=-nostartfiles",
     "-C", "relocation-model=static",
     "-C", "target-cpu=cortex-a72",
 ]
@@ -15,7 +14,6 @@ rustflags = [
 [target.aarch64-unknown-none-softfloat]
 rustflags = [
     "-C", "link-arg=-Tcrates/brasa-bin/link.ld",
-    "-C", "link-arg=-nostartfiles",
     "-C", "relocation-model=static",
     "-C", "target-cpu=cortex-a72",
 ]
