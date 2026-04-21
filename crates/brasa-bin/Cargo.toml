@@ -1,0 +1,25 @@
+[package]
+name = "brasa-bin"
+description = "brasa kernel image — the bootable ELF (Phase 0 PoC: UART print + halt)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+homepage.workspace = true
+repository.workspace = true
+authors.workspace = true
+publish = false
+
+[[bin]]
+name = "brasa-kernel"
+path = "src/main.rs"
+
+[lints]
+workspace = true
+
+[dependencies]
+tronco = { workspace = true }
+raiz   = { workspace = true }
+
+# Phase 0 deliberately does not pull in raizame / seiva / casca — those
+# arrive with the Phase 1 syscall entry wiring.

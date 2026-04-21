@@ -9,6 +9,7 @@ members = [
     "crates/folha",
     "crates/semente",
     "crates/raizame",
+    "crates/brasa-bin",
 ]
 
 [workspace.package]

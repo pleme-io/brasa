@@ -70,9 +70,21 @@
         packages = {
           default = pkgs.writeTextFile {
             name = "brasa-phase-0-marker";
-            text = "brasa Phase 0 — no kernel image yet. See docs/roadmap.md.\n";
+            text = "brasa Phase 0 — see crates/brasa-bin for the QEMU PoC.\n";
             destination = "/STATUS";
           };
+        };
+
+        # `nix run .#brasa-qemu` — Phase 0 boot. 3-line inline glue
+        # (build + exec-qemu) is the acceptable-shell boundary per
+        # pleme-io CLAUDE.md; a proper Rust runner lands once the image
+        # build pipeline matures. Run from the repo root.
+        apps.brasa-qemu = {
+          type = "app";
+          program = toString (pkgs.writeShellScript "brasa-qemu" ''
+            ${rustToolchain}/bin/cargo build -p brasa-bin --target aarch64-unknown-none --release && \
+            exec ${pkgs.qemu}/bin/qemu-system-aarch64 -machine virt -cpu cortex-a72 -m 128 -nographic -kernel target/aarch64-unknown-none/release/brasa-kernel
+          '');
         };
       }
     );
