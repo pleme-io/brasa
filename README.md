@@ -4,7 +4,7 @@
 
 **Brasa** — Brazilian-Portuguese for *ember, live coal*. The persistent fire of a running system — the spark that keeps userspace warm, the flame that never goes out as long as the machine is alive. Contrasts with its sibling `alicerce` (bedrock, passive, foundational): brasa is active, alive, burning.
 
-**Status:** Phase 0 — Design. No code runs yet. This repo contains ADRs, architecture docs, and crate skeletons.
+**Status:** Phase 0 — Design + **proven-boot**. Kernel image boots under QEMU aarch64 and writes a typed UART banner. See [`docs/status.md`](./docs/status.md) for the reproducible command and current green checklist. See [`docs/vision.md`](./docs/vision.md) for the north-star ("the rust/lisp line fully realized — safety + mutability compose; WASM/WASI bridges the ecosystem"). See [`docs/tracking.md`](./docs/tracking.md) for every sub-milestone from here to supremacy.
 
 **License:** MIT. Fully open source from day one.
 
@@ -50,10 +50,13 @@ Driver framework ([`galho`](./crates/galho)) and process abstraction ([`folha`](
 
 ## Reading order
 
-1. [docs/architecture.md](./docs/architecture.md) — the shape of the whole system
-2. [docs/roadmap.md](./docs/roadmap.md) — phases 0-6 with milestone detail
-3. [docs/naming.md](./docs/naming.md) — why the crates are named what they are
-4. [docs/adrs/](./docs/adrs/) — design decisions, numbered
+1. [docs/vision.md](./docs/vision.md) — the thesis, the rust/lisp line, WASM/WASI bridge, supremacy end-state
+2. [docs/status.md](./docs/status.md) — what is proven-green today (reproducible commands)
+3. [docs/tracking.md](./docs/tracking.md) — every sub-milestone from here to Phase ∞ as checkboxes
+4. [docs/architecture.md](./docs/architecture.md) — the shape of the whole system
+5. [docs/roadmap.md](./docs/roadmap.md) — phases 0-6 with milestone detail
+6. [docs/naming.md](./docs/naming.md) — why the crates are named what they are
+7. [docs/adrs/](./docs/adrs/) — design decisions, numbered
 
 ## Crates in this workspace
 

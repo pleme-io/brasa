@@ -14,6 +14,7 @@ Every load-bearing design decision in brasa gets an ADR. ADRs are numbered monot
 | 0006 | [First target — Apple Silicon via kasou](./0006-first-target-apple-silicon-kasou.md) | Accepted |
 | 0007 | [No Linux ABI — ever](./0007-no-linux-abi.md) | Accepted |
 | 0008 | [Open source from day zero](./0008-open-source-from-day-zero.md) | Accepted |
+| 0009 | [WASM/WASI as a first-class runtime](./0009-wasm-wasi-first-class.md) | Accepted |
 
 ## Status values
 
